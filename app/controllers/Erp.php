@@ -63,13 +63,25 @@ class Erp {
 
         foreach($object as $key => $values) {
            
-            foreach($values as $value) {
+            foreach($values as $k => $value) {
                 
                 $rowData .= str_replace("{{tdData}}", $value, $td);
+                
+                ( $k == "id") ? $id = $k : "";
+
             }
 
-            $row .= str_replace("{{trData}}", $rowData, $tr);    
+            $row .= str_replace("{{trData}}", $rowData, $tr);   
+
+                        
+            if($id == "id") {               
+
+                $row = str_replace("{{id}}", $values->id, $row);    
+                           
+            }                  
+
             
+
             $rowData = "";
 
         }
