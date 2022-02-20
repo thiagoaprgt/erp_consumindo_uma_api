@@ -91,9 +91,45 @@
         }
 
 
+        public function delete($parameters) {
+
+            if($_POST["method"] == "delete") {
+
+                extract($parameters);
+
+                $sql = "DELETE FROM produtos WHERE id = $id";
+
+                $prepare = $this->conn->prepare($sql);
+                $prepare->execute();
+
+            }
+
+        }
+
+
         public function save($parameters) {
 
+            
+
             if($_POST["method"] == "save") {
+
+                extract($parameters);
+
+                if(isset($id) && !empty($id)){
+
+                    $sql = "UPDATE produtos SET nome=$nome, estoque=$estoque, nota_fiscal=$nota_fiscal";
+
+                    $prepare = $this->conn->prepare($sql);
+                    $prepare->execute();
+
+                }else {
+
+                    $sql = "INSERT INTO produtos (nome, estoque, nota_fiscal) VALUES ($nome, $estoque, $nota_fiscal)";
+
+                    $prepare = $this->conn->prepare($sql);
+                    $prepare->execute();
+
+                }
                 
             }
 

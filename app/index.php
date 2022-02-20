@@ -24,32 +24,46 @@
 
     $template = str_replace("{{content}}", $content, $template);
 
+    
+    ob_start(); // gerenciador de output   
 
-    if(isset($_GET["method"]) && !empty($_GET["method"])) {
+
+    if(isset($_GET["method"]) && !empty($_GET["method"]) && count($_GET) > 1) {
 
 
-        ob_start(); // gerenciador de output        
 
-        $method = call_user_func( array( $erp, $_GET["method"] ) );
+        $method = $_GET["method"];
 
-        echo $method;
+        array_shift($_GET);         
+        
+        
+
+        $action = call_user_func_array( array( $erp, $method), $_GET );
+
+        echo $action;
 
         $output = ob_get_contents();
 
-        ob_end_clean();
+        
 
+
+    }else if(isset($_GET["method"]) && !empty($_GET["method"])) {
+
+        $action = call_user_func( array( $erp, $_GET["method"] ) );
+
+        echo $action;
+
+        $output = ob_get_contents();
 
     }
 
     
     
     
-    if(isset($_POST["method"]) && !empty($_POST["method"])) {
+    if(isset($_POST["method"]) && !empty($_POST["method"]) && count($_POST) > 1 ) {
 
         
-        ob_start(); // gerenciador de output    
-        
-        $method = $_POST["method"];
+        $method = $_POST["method"];      
 
         array_shift($_POST);   
 
@@ -60,9 +74,19 @@
 
         $output = ob_get_contents();
 
-        ob_end_clean();        
+        
+    }else if(isset($_POST["method"]) && !empty($_POST["method"])) {
+
+        $action = call_user_func( array( $erp, $_POST["method"] ));
+
+        echo $action;
+
+        $output = ob_get_contents();
 
     }
+
+
+    ob_end_clean(); 
 
     
 

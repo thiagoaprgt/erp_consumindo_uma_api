@@ -77,7 +77,7 @@ class Erp {
             if($id == "id") {               
 
                 $row = str_replace("{{id}}", $values->id, $row);    
-                           
+
             }                  
 
             
@@ -150,7 +150,29 @@ class Erp {
     }
 
 
+    public function delete($product_id) {
+
+
+        $data = [
+
+            "method" => "delete",
+            "id" => $product_id
+
+        ];
+
+        $api = new Http();
+
+        $post = $api->http_post_Request($this->url, $data, $this->header);
+
+        return $post;  
+
+
+    }
+
+
     public function save($id) {
+
+        
         
     }
 
