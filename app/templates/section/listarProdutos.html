@@ -1,0 +1,44 @@
+
+
+
+
+<div>
+
+    
+    <form class="row g-3" action="http://localhost/stokki/app/" method="post">
+
+        
+        <input type="text" hidden name="method" value="selectProducts">
+
+        <div class="col-md-6">
+            <label for="nomeDasColunasDeRetorno" class="form-label">Nome das colunas que serão retornadas</label>
+            <input type="text" name="column_names" class="form-control" id="nomeDasColunasDeRetorno" placeholder="Exemplo: id, nome, estoque" required>
+        </div>
+    
+        <div class="col-md-6">
+            <label for="colunaDeBusca" class="form-label">Nome de uma coluna para busca</label>
+            <input name="searched_column" class="form-control" id="colunaDeBusca" placeholder="Exemplo: id" required>
+        </div>
+    
+        <div class="col-md-6">
+            <label for="operadorLogico" class="form-label">Um operador lógico</label>
+            <input name="constraints" class="form-control" id="operadorLogico" placeholder="Exemplo: >, !=, &&, ||" required>
+        </div>
+    
+        <div class="col-md-6">
+            <label for="valorDaRestricao" class="form-label">Valor da Restrição</label>
+            <input name="searched_column_value" class="form-control" id="valorDaRestricao" placeholder="Exemplo: um número ou uma palavra" required>
+        </div>
+
+        
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="submit">Busca avançada</button>
+            <a href="http://localhost/stokki/app/?method=listAllProducts" class="btn btn-primary">Listar Todos os Produtos</a>
+            <a href="http://localhost/stokki/app/" class="btn btn-info">Limpar os resultados</a>
+        </div>
+
+        
+    
+    </form>
+
+</div>
